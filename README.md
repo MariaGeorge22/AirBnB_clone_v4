@@ -158,6 +158,7 @@ Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twit
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)  
 Jhoan Zamora - [Github](https://github.com/jzamora5) / [Twitter](https://twitter.com/JhoanZamora10)  
 David Ovalle - [Github](https://github.com/Nukemenonai) / [Twitter](https://twitter.com/disartDave) 
+
 Duncan Ngugi - [Github](https://github.com/ngugimuchangi)/[Twitter](https://twitter.com/ngugi_muchangi)
 
 Version 4 of Airbnb clone project by Duncan Ngugi
