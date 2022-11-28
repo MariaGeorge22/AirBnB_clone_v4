@@ -18,5 +18,20 @@ $(function () {
     }
   });
   // END get amenity filters
+
+  // START check API status
+  $.ajax({
+    type: 'GET',
+    url: 'http://0.0.0.0:5001/api/v1/status/',
+    success: (data) => {
+      const divApi = $('div.api_status');
+      if (data.status === 'OK') {
+        divApi.addClass('available');
+      } else {
+        if (divApi.hasClass('.available')) { $('div.api_status').removeClass('.available'); }
+      }
+    }
+  });
+  // END check API status
 }
 );
