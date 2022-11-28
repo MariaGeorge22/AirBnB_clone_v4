@@ -24,12 +24,7 @@ $(function () {
     type: 'GET',
     url: 'http://0.0.0.0:5001/api/v1/status/',
     success: (data) => {
-      const divApi = $('div.api_status');
-      if (data.status === 'OK') {
-        divApi.addClass('available');
-      } else {
-        if (divApi.hasClass('.available')) { $('div.api_status').removeClass('.available'); }
-      }
+      if (data.status === 'OK') { $('div.api_status').toggleClass('available'); }
     }
   });
   // END check API status
