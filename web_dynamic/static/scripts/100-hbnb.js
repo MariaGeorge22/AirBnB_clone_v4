@@ -1,31 +1,35 @@
 $(function () {
   const amenityIds = [];
+  const stateIds = [];
+  const cityIds = [];
   const amenityNames = [];
+  const locationNames = [];
   let filterPlaces = null;
 
   getPlaces('{}'); // get all places when window loads
 
-  // START get amenity filters
-  $('li input:checkbox').change(function () {
-    if ($(this).is(':checked')) {
-      amenityIds.push($(this).attr('data-id'));
-      amenityNames.push($(this).attr('data-name'));
+  // listen to filter changes
+  $('input.amenity_list').change(function () { getFilters($(this), amenityIds, amenityNames, $('div.amenities > h4')); });
+  $('input.states').change(function () { getFilters($(this), stateIds, locationNames, $('div.locations > h4')); });
+  $('input.cities').change(function () { getFilters($(this), cityIds, locationNames, $('div.locations > h4')); });
+
+  // START get filters
+  function getFilters (filter, filterIds, filterNames, populate) {
+    if (filter.is(':checked')) {
+      filterIds.push(filter.attr('data-id'));
+      filterNames.push(filter.attr('data-name'));
     } else {
-      amenityIds.pop($(this).attr('data-id'));
-      amenityNames.pop($(this).attr('data-name'));
+      filterIds.pop(filter.attr('data-id'));
+      filterNames.pop(filter.attr('data-name'));
     }
-    if (amenityNames.length > 0) {
-      $('div.amenities > h4').text(amenityNames.join(', '));
-    } else {
-      $('div.amenities > h4').text('');
-    }
-  });
-  // END get amenity filters
+    populate.text(filterNames.join(', '));
+  }
+  // END get filters
 
   // START listen to searches
   $('button').click(() => {
     $('section.places article').remove();
-    getPlaces(JSON.stringify({ amenities: amenityIds }));
+    getPlaces(JSON.stringify({ states: stateIds, cities: cityIds, amenities: amenityIds }));
   });
   // END listen to searches
 
@@ -68,7 +72,7 @@ $(function () {
 
             $.ajax({
               type: 'GET',
-              url: 'http://0.0.0.0:5001/api/v1/users/{$place.user_id}',
+              url: `http://0.0.0.0:5001/api/v1/users/${place.user_id}`,
               success: (data) => { user.html(`<b>Owner:</b> ${data.first_name} ${data.last_name}`); }
             });
 

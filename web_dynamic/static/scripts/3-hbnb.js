@@ -45,7 +45,7 @@ $(function () {
         const article = $('<article></article>');
         const titleAndPrice = $('<div class="title_box"></div>');
         const title = $('<h2></h2>').text(place.name);
-        const price = $('<div class="price_by_night"></div>').text(place.price_by_night);
+        const price = $('<div class="price_by_night"></div>').text(`$${place.price_by_night}`);
         const information = $('<div class="information"></div>');
         const maxGuest = $('<div class="max_guest"></div>');
         const numRooms = $('<div class="number_rooms"></div>');
@@ -56,7 +56,7 @@ $(function () {
         $.ajax({
           type: 'GET',
           url: 'http://0.0.0.0:5001/api/v1/users/' + place.user_id,
-          success: (data) => { user.html('<b>Owner:</b> ' + data.first_name + ' ' + data.last_name); }
+          success: (data) => { user.html(`<b>Owner:</b> ${data.first_name} ${data.last_name}`); }
         });
 
         titleAndPrice.append(title, price);
